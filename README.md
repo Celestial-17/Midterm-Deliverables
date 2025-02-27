@@ -72,16 +72,6 @@ optimization_data = processor.export_for_optimization()
 ```
 
 
-## Recent Simplifications
-
-Our latest update streamlines the mathematical formulation while preserving core functionality:
-
-1. **Constraint Reduction**: Reduced redundant constraints for individual yard conditions by implementing a unified set of constraints applicable to all classification yards
-2. **Classification Simplification**: Merged classification yard constraints by distinguishing only between normal ($h^0_{ijk}$) and shifted ($h^1_{ijk}$) classifications rather than modeling multiple levels of routing restrictions
-3. **Variable Type Optimization**: Eliminated unnecessary integer constraints where binary indicators ($x^s_{ij}$, $y_{ij}$, etc.) suffice to enforce logical conditions
-4. **Penalty Approach**: Added penalty terms for shifted cars ($P_{shifted,k}S_{k}$) instead of modeling complex yard congestion effects explicitly
-
-These changes make the model more computationally efficient while still capturing essential trade-offs in freight train service planning.
 
 ## Requirements
 
