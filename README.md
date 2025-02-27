@@ -71,55 +71,6 @@ print(f"Total baseline routing cost: {sum(baseline_costs.values()):.2f}")
 optimization_data = processor.export_for_optimization()
 ```
 
-## Key Features
-
-- **Network Visualization**: Generate intuitive visualizations of railway networks, including nodes, edges, and demand flows.
-- **Efficient Data Processing**: Transform raw data into optimization-ready formats with normalization and standardization.
-- **Flexible Model Formulation**: Adapt constraints and parameters to match specific operational scenarios.
-- **Synthetic Data Generation**: Create test scenarios with various network topologies and demand patterns.
-- **Mathematical Optimization**: Solve complex routing and yard management problems using mixed-integer linear programming techniques.
-
-## Mathematical Formulation
-
-Our model formulates the railway optimization problem as a mixed-integer linear program. The complete mathematical formulation is as follows:
-
-$
-\min \sum_{i} \sum_{j} c_{ij}y_{ij} + \sum_{s} \sum_{i} \sum_{j} d_{ij}x^s_{ij} + \sum_{j} C_{yard,j}f_{ij} + \sum_{k} P_{shifted,k}S_{k}
-$
-
-Subject to the following constraints:
-
-1. **Flow Conservation Constraints**:
-   
-   $\sum_{j} x^s_{ij} = 1, \forall s \in S, i, j \in N$
-   
-   $\sum_{j} x^s_{ij} = \sum_{k} x^s_{jk}, \forall j, s$
-
-2. **Train Capacity Constraints**:
-   
-   $x^s_{ij} \leq y_{ij}, \forall i, j, s$
-   
-   $\sum_{s} x^s_{ij}n_s \leq L_{Max}, \forall i, j$
-
-3. **Yard Capacity Constraints**:
-   
-   $\sum_{j} f_{ij} \leq C_{Yard,i}, \forall i$
-   
-   $\sum_{j} x^s_{ij} \leq C_{Sort,i}, \forall i$
-   
-   For double-hump yards:
-   
-   $\sum_{j} x^s_{ij}h^0_{ijk} \leq C_{Normal,k}, \forall k$
-   
-   $\sum_{j} x^s_{ij}h^1_{ijk} \leq C_{Shifted,k}, \forall k$
-
-4. **Routing Constraints with Shifted Cars**:
-   
-   $h^0_{ijk} + h^1_{ijk} \leq 1, \forall i, j, k$
-   
-   $h^1_{ijk} \leq y_{ij}, \forall i, j, k$
-   
-The model distinguishes between normal and shifted classification operations at yards, introducing penalties to discourage inefficient routing.
 
 ## Recent Simplifications
 
